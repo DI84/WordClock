@@ -11,28 +11,54 @@ namespace Wordclock
     {
         #region Private members
 
+        /// <summary>
+        /// The window the viemodel is binding to
+        /// </summary>
         private MainWindow mWindow;
 
+        /// <summary>
+        /// Timer to keep up the good time
+        /// </summary>
         private DispatcherTimer mTimer;
 
         #endregion
 
         #region PublicProperties
 
+        /// <summary>
+        /// Array that saves the fontcolor of the textblocks as bool (activ/inactiv)
+        /// </summary>
         bool[] CIA = new bool[110];
 
         #endregion
 
+        #region Commands
+
+        /// <summary>
+        /// Close the mWindow
+        /// </summary>
         public ICommand CloseCommand { get; set; }
+
+        /// <summary>
+        /// Maximize / minimize the mWindow
+        /// </summary>
+        public ICommand MaxMinCommand { get; set; }
+
+        #endregion
 
         #region Public constructor
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="window"></param>
         public WindowViewModel (MainWindow window)
         {
             mWindow = window;
 
             EvaluateTime(this, null);
 
+            // Set and activate the Timer. Updates the Clock every 10sec.
             mTimer = new DispatcherTimer();
             mTimer.Interval = new TimeSpan(0, 0, 10);
             mTimer.Tick += EvaluateTime;
@@ -40,8 +66,9 @@ namespace Wordclock
 
             // Create Commands
             CloseCommand = new RelayCommand(() => mWindow.Close());
+            MaxMinCommand = new RelayCommand(() => mWindow.WindowState ^= WindowState.Maximized);
 
-            // Mouse Events
+            // Get the mouse events
             mWindow.MouseWheel += mWindow_MouseWheel;
             mWindow.MouseLeftButtonDown += mWindow_LMouseButtonDown;
         }
@@ -193,8 +220,16 @@ namespace Wordclock
 
         #region Public methods
 
+        /// <summary>
+        /// Resizes the mWindow according to the mousewheel delta
+        /// </summary>
+        /// <param name="sender">Mouse</param>
+        /// <param name="e">MouseWheelEventArgs</param>
         public void mWindow_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            if (mWindow.WindowState != WindowState.Normal)
+                return;
+
             int ResizeDelta = 30;
 
             if (e.Delta > 0 && mWindow.ActualHeight + ResizeDelta <= mWindow.MaxHeight)
@@ -209,6 +244,11 @@ namespace Wordclock
             }
         }
 
+        /// <summary>
+        /// Drag mWindow on left mouse down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void mWindow_LMouseButtonDown(object sender, MouseEventArgs e)
         {
             mWindow.DragMove();
