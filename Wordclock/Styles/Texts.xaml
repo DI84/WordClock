@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wordclock">
+   
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockClock" >
+        <Setter Property="Foreground" Value="{StaticResource CharInactivBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="UltraBold" />
+    </Style>
+
+</ResourceDictionary>
