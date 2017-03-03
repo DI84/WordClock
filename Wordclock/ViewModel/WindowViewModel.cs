@@ -23,6 +23,8 @@ namespace Wordclock
 
         #endregion
 
+        public ICommand CloseCommand { get; set; }
+
         #region Public constructor
 
         public WindowViewModel (MainWindow window)
@@ -36,7 +38,8 @@ namespace Wordclock
             mTimer.Tick += EvaluateTime;
             mTimer.Start();
 
-            //mTimer = new DispatcherTimer(x => EvaluateTime(), new AutoResetEvent(true), 0, 5000);
+            // Create Commands
+            CloseCommand = new RelayCommand(() => mWindow.Close());
 
             // Mouse Events
             mWindow.MouseWheel += mWindow_MouseWheel;
@@ -45,7 +48,7 @@ namespace Wordclock
 
         #endregion
 
-        #region Private events
+        #region Private methods
 
         private void EvaluateTime(object sender, object e)
         {
@@ -89,7 +92,7 @@ namespace Wordclock
                 // vor halb
                 CIA[39] = CIA[40] = CIA[41] = true;
             }
-            else
+            else if (dt.Minute >= 58 || dt.Minute <= 2)
             {
                 // Uhr
                 CIA[107] = CIA[108] = CIA[109] = true;
@@ -179,18 +182,18 @@ namespace Wordclock
                 var TB = (TextBlock)((Viewbox)mWindow.CharGrid.Children[i]).Child;
 
                 if(CIA[i])
-                    TB.Foreground = new SolidColorBrush(Color.FromRgb((byte)255, (byte)255, (byte)255));
+                    TB.Foreground = (SolidColorBrush)Application.Current.FindResource("CharActivBrush");
                 else
-                    TB.Foreground = new SolidColorBrush(Color.FromRgb((byte)50, (byte)50, (byte)50));
+                    TB.Foreground = (SolidColorBrush)Application.Current.FindResource("CharInactivBrush");
             }
         }
         
 
         #endregion
 
-        #region Public events
+        #region Public methods
 
-        private void mWindow_MouseWheel(object sender, MouseWheelEventArgs e)
+        public void mWindow_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             int ResizeDelta = 30;
 
@@ -206,7 +209,7 @@ namespace Wordclock
             }
         }
 
-        private void mWindow_LMouseButtonDown(object sender, MouseEventArgs e)
+        public void mWindow_LMouseButtonDown(object sender, MouseEventArgs e)
         {
             mWindow.DragMove();
         }

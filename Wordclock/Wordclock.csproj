@@ -122,6 +122,12 @@
   <ItemGroup>
     <Resource Include="Images\WordClock.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\close.ico" />
+    <Resource Include="Images\Color.ico" />
+    <Resource Include="Images\exit_fullscreen.png" />
+    <Resource Include="Images\fullscreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
