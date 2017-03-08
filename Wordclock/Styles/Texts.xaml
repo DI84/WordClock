@@ -2,12 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Wordclock">
    
-    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockClock" >
+    <!-- Basic textblock style inactiv-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockClockInactiv" >
         <Setter Property="Foreground" Value="{StaticResource CharInactivBrush}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="UltraBold" />
     </Style>
+
+    <!-- Basic textblock style activ-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockClockActiv" >
+        <Setter Property="Foreground" Value="{StaticResource CharActivBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="UltraBold" />
+    </Style>
+
 
 </ResourceDictionary>

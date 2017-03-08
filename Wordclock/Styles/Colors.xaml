@@ -2,13 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Wordclock">
 
+    <!-- Backgroun Colors -->
     <Color x:Key="Background">#000000</Color>
     <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Background}" />
 
+    <!-- Colors for activ chars-->
     <Color x:Key="CharActiv">#FFFFFF</Color>
     <SolidColorBrush x:Key="CharActivBrush" Color="{StaticResource CharActiv}" />
 
-    <Color x:Key="CharInactiv">#505050</Color>
+    <!-- Colors for inactiv chars-->
+    <Color x:Key="CharInactiv">#404040</Color>
     <SolidColorBrush x:Key="CharInactivBrush" Color="{StaticResource CharInactiv}" />
 
 

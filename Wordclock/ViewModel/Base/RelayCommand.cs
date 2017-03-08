@@ -23,7 +23,7 @@ namespace Wordclock
         #region Constructor
 
         /// <summary>
-        /// defaukt constructor
+        /// default constructor
         /// </summary>
         /// <param name="action"></param>
         public RelayCommand(Action action)
