@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DateTimeHelper.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\ShowChar.cs" />
     <Compile Include="ValueConverter\BaseValueConverter.cs" />
     <Compile Include="ValueConverter\WindowstateToURI.cs" />
     <Compile Include="ViewModel\Base\BaseViewModel.cs" />
