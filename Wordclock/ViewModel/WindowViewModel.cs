@@ -8,8 +8,6 @@ namespace Wordclock
 {
     public class WindowViewModel : BaseViewModel
     {
-        #region Private members
-
         /// <summary>
         /// The window the viemodel is binding to
         /// </summary>
@@ -37,10 +35,6 @@ namespace Wordclock
 
         private ObservableCollection<ShowChar> mClockCharCollection;
 
-
-        #endregion
-
-        #region PublicProperties
 
         /// <summary>
         /// The window min height
@@ -87,9 +81,7 @@ namespace Wordclock
         /// </summary>
         public DateTime ActTime { get; set; }
 
-        #endregion
 
-        #region Commands
 
         /// <summary>
         /// Close the mWindow
@@ -107,9 +99,7 @@ namespace Wordclock
         public ICommand TopmostCommand { get; set; }
 
 
-        #endregion
 
-        #region Public constructor
 
         /// <summary>
         /// Default constructor
@@ -138,10 +128,8 @@ namespace Wordclock
             mWindow.MouseLeftButtonDown += mWindow_LMouseButtonDown;
         }
 
-        #endregion
 
-        #region Private methods
-        
+
         /// <summary>
         /// Adds an item to the ClockCharCollection
         /// </summary>
@@ -301,10 +289,8 @@ namespace Wordclock
                     UpdateClockCharCollection(i);
             }
         }
-        
-        #endregion
 
-        #region Public methods/events
+
 
         /// <summary>
         /// Resizes the mWindow according to the mousewheel delta
@@ -345,7 +331,5 @@ namespace Wordclock
         {
             mWindow.Topmost = mWindowTopemost = !mWindowTopemost;
         }
-
-        #endregion
     }
 }
