@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 
 namespace Wordclock
 {
     /// <summary>
-    /// A converter that takes in a window state and returns a image
+    /// A converter that takes in a maximized boolean and returns the matching icon
     /// </summary>
     public class WindowstateToURI : BaseValueConverter<WindowstateToURI>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var MinWMaxImage = new Uri("Images/maximize.png", UriKind.Relative);
+            if (value is bool isMaximized && isMaximized)
+                return new Uri("Images/minimize.png", UriKind.Relative);
 
-            if (value == null)
-                return MinWMaxImage;
-
-            if (((WindowViewModel)value).StateOfWindow == WindowState.Maximized)
-                MinWMaxImage = new Uri("Images/minimize.png", UriKind.Relative);
-
-            return MinWMaxImage;
+            return new Uri("Images/maximize.png", UriKind.Relative);
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

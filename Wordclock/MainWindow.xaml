@@ -36,7 +36,7 @@
 
                     <MenuItem Header="Vollbildschirm" Command="{Binding MaxMinCommand}">
                         <MenuItem.Icon>
-                            <Image Source="{Binding Converter={StaticResource converter}}" />
+                            <Image Source="{Binding WindowIsMaximized, Converter={StaticResource converter}}" />
                         </MenuItem.Icon>
                     </MenuItem>
 
