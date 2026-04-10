@@ -34,6 +34,7 @@
 
             <Control.Resources>
                 <local:WindowstateToURI x:Key="converter" />
+                <local:BoolToTopmostURI x:Key="topmostConverter" />
             </Control.Resources>
 
             <ContextMenu.ItemsSource>
@@ -47,7 +48,7 @@
 
                     <MenuItem Header="Immer im Vordergrund" Command="{Binding TopmostCommand}">
                         <MenuItem.Icon>
-                            <Image Source="/Images/OnTopmostOff.ico" />
+                            <Image Source="{Binding IsTopmostOn, Converter={StaticResource topmostConverter}}" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />

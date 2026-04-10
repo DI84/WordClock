@@ -11,7 +11,6 @@ namespace Wordclock
         private readonly IWindowService mWindowService;
         private readonly IWordClockEngine mClockEngine;
         private readonly DispatcherTimer mTimer;
-        private bool mWindowTopmost;
         private ObservableCollection<ShowChar> mClockCharCollection;
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace Wordclock
         /// <summary>
         /// Window is always on the foreground if true
         /// </summary>
-        public bool IsTopmostOn => mWindowTopmost;
+        public bool IsTopmostOn { get; set; }
 
         /// <summary>
         /// Close the window
@@ -138,8 +137,8 @@ namespace Wordclock
         /// </summary>
         private void SwitchTopmost()
         {
-            mWindowTopmost = !mWindowTopmost;
-            mWindowService.SetTopmost(mWindowTopmost);
+            IsTopmostOn = !IsTopmostOn;
+            mWindowService.SetTopmost(IsTopmostOn);
         }
 
         /// <summary>
