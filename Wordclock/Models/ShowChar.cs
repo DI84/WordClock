@@ -1,6 +1,6 @@
 ﻿namespace Wordclock
 {
-    public class ShowChar : BaseViewModel
+    public class ShowChar
     {
         public int Row { get; set; }
         public int Column { get; set; }

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Wordclock"
         mc:Ignorable="d"
         Height="400" Width="400" 
@@ -12,6 +13,10 @@
         AllowsTransparency="True" 
         Background="Black" 
         >
+    <i:Interaction.Behaviors>
+        <local:WindowDragBehavior />
+        <local:WindowResizeBehavior ResizeDelta="30" MaxHeightLimit="1000" />
+    </i:Interaction.Behaviors>
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:ShowChar}">
             <Viewbox >
@@ -42,14 +47,14 @@
 
                     <MenuItem Header="Immer im Vordergrund" Command="{Binding TopmostCommand}">
                         <MenuItem.Icon>
-                            <Image Source="Images/OnTopmostOff.ico" />
+                            <Image Source="/Images/OnTopmostOff.ico" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
 
                     <MenuItem Header="Schliessen" Command="{Binding CloseCommand}">
                         <MenuItem.Icon>
-                            <Image Source="Images/Close.png" />
+                            <Image Source="/Images/Close.png" />
                         </MenuItem.Icon>
                     </MenuItem>
 
