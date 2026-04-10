@@ -12,6 +12,7 @@ namespace Wordclock
         private readonly IWordClockEngine mClockEngine;
         private readonly DispatcherTimer mTimer;
         private ObservableCollection<ShowChar> mClockCharCollection;
+        private int mLastRemainderMinutes;
 
         /// <summary>
         /// The window min height
@@ -32,6 +33,26 @@ namespace Wordclock
         /// The collection that is making up the clock
         /// </summary>
         public ObservableCollection<ShowChar> ClockCharCollection { get { return mClockCharCollection; } set { mClockCharCollection = value; } }
+
+        /// <summary>
+        /// Minute dot visibility: upper-right corner
+        /// </summary>
+        public bool Dot1Visible { get; set; }
+
+        /// <summary>
+        /// Minute dot visibility: lower-right corner
+        /// </summary>
+        public bool Dot2Visible { get; set; }
+
+        /// <summary>
+        /// Minute dot visibility: lower-left corner
+        /// </summary>
+        public bool Dot3Visible { get; set; }
+
+        /// <summary>
+        /// Minute dot visibility: upper-left corner
+        /// </summary>
+        public bool Dot4Visible { get; set; }
 
         /// <summary>
         /// Actual time that the clock shows
@@ -98,12 +119,15 @@ namespace Wordclock
         /// <param name="e"></param>
         private void EvaluateTime(object sender, object e)
         {
-            var dt = DateTimeHelper.RoundToNearest(DateTime.Now, TimeSpan.FromMinutes(5));
+            var now = DateTime.Now;
+            var dt = now.RoundDown(TimeSpan.FromMinutes(5));
+            var remainderMinutes = (now - dt).Minutes;
 
-            if (ActTime == dt)
+            if (ActTime == dt && mLastRemainderMinutes == remainderMinutes)
                 return;
-            else
-                ActTime = dt;
+
+            ActTime = dt;
+            mLastRemainderMinutes = remainderMinutes;
 
             var activeIndices = mClockEngine.GetActiveIndices(dt);
             var chars = mClockEngine.ClockChars;
@@ -121,6 +145,10 @@ namespace Wordclock
             }
 
             ClockCharCollection = collection;
+            Dot1Visible = remainderMinutes >= 1;
+            Dot2Visible = remainderMinutes >= 2;
+            Dot3Visible = remainderMinutes >= 3;
+            Dot4Visible = remainderMinutes >= 4;
         }
 
         /// <summary>
