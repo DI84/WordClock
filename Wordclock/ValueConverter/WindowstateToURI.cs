@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
-using PropertyChanged;
 
 namespace Wordclock
 {
@@ -17,7 +16,7 @@ namespace Wordclock
             if (value == null)
                 return MinWMaxImage;
 
-            if(((WindowViewModel)value).StateOfWindow == WindowState.Maximized)
+            if (((WindowViewModel)value).StateOfWindow == WindowState.Maximized)
                 MinWMaxImage = new Uri("Images/minimize.png", UriKind.Relative);
 
             return MinWMaxImage;

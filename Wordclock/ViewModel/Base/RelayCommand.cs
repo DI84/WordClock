@@ -34,7 +34,7 @@ namespace Wordclock
 
         public void Execute(object parameter)
         {
-           mAction();
+            mAction();
         }
     }
 }

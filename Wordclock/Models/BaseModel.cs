@@ -9,6 +9,6 @@ namespace Wordclock
         public int Row { get; set; }
         public int Column { get; set; }
         public double Opacity { get; set; }
-        public string Text { get {return Texts; } set {Texts = value;} }
+        public string Text { get { return Texts; } set { Texts = value; } }
     }
 }

@@ -50,7 +50,7 @@ namespace Wordclock
         /// The window min wisth
         /// </summary>
         public Double MinWidthWindow { get; set; } = 300;
-        
+
         /// <summary>
         /// The resize delta on mouse scroll wheel event
         /// </summary>
@@ -74,7 +74,7 @@ namespace Wordclock
         /// <summary>
         /// The collection that is making up the clock
         /// </summary>
-        public ObservableCollection<ShowChar> ClockCharCollection  { get { return mClockCharCollection; } set { mClockCharCollection = value; } }
+        public ObservableCollection<ShowChar> ClockCharCollection { get { return mClockCharCollection; } set { mClockCharCollection = value; } }
 
         /// <summary>
         /// Actual time that the clock shows
@@ -105,7 +105,7 @@ namespace Wordclock
         /// Default constructor
         /// </summary>
         /// <param name="window"></param>
-        public WindowViewModel (MainWindow window)
+        public WindowViewModel(MainWindow window)
         {
             mWindow = window;
 
@@ -192,7 +192,7 @@ namespace Wordclock
                 for (int i = 107; i <= 109; i++)
                     UpdateClockCharCollection(i);
             }
-            
+
             // Minutenauswertung (fein)
             if (dt.Minute == 5 || dt.Minute == 55 || dt.Minute == 25 || dt.Minute == 35)
             {
@@ -220,7 +220,7 @@ namespace Wordclock
             }
 
             // Stundenauswertung
-            if(dt.Hour == 1 || dt.Hour == 13)
+            if (dt.Hour == 1 || dt.Hour == 13)
             {
                 if (dt.Minute == 0)
                 {
