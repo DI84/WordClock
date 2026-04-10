@@ -17,8 +17,6 @@ namespace Wordclock
         /// </summary>
         private static T mConverter = null;
 
-
-
         /// <summary>
         /// Provides a static instance of the value converter 
         /// </summary>
@@ -28,8 +26,6 @@ namespace Wordclock
         {
             return mConverter ?? (mConverter = new T());
         }
-
-
 
         /// <summary>
         /// The method to convert one type to another

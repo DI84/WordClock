@@ -49,8 +49,6 @@ namespace Wordclock
         /// </summary>
         public bool IsTopmostOn => mWindowTopmost;
 
-
-
         /// <summary>
         /// Close the window
         /// </summary>
@@ -65,9 +63,6 @@ namespace Wordclock
         /// Command to switch between window topmost true/false
         /// </summary>
         public ICommand TopmostCommand { get; set; }
-
-
-
 
         /// <summary>
         /// Default constructor
@@ -96,8 +91,6 @@ namespace Wordclock
             MaxMinCommand = new RelayCommand(() => ToggleMaximize());
             TopmostCommand = new RelayCommand(() => SwitchTopmost());
         }
-
-
 
         /// <summary>
         /// Evaluates the time and fills the ClockCharCollection
@@ -130,8 +123,6 @@ namespace Wordclock
 
             ClockCharCollection = collection;
         }
-
-
 
         /// <summary>
         /// Switch between topmost true/false
