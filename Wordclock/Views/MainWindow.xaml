@@ -17,17 +17,6 @@
         <local:WindowDragBehavior />
         <local:WindowResizeBehavior ResizeDelta="30" MaxHeightLimit="1000" />
     </i:Interaction.Behaviors>
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
-        <DataTemplate DataType="{x:Type local:ShowChar}">
-            <Viewbox >
-                <TextBlock Text="{Binding Text}" 
-                           Style="{StaticResource TextBlockClockActiv}"
-                           Opacity="{Binding Opacity}"
-                           />
-            </Viewbox>
-        </DataTemplate>
-    </Window.Resources>
 
     <!-- Contextmenu -->
     <Window.ContextMenu>
@@ -67,76 +56,5 @@
     </Window.ContextMenu>
 
     <!-- Window content -->
-    <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="25*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="25*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <!-- Minute dots in the four corners (clockwise from upper-right) -->
-        <Ellipse Grid.Row="0" Grid.Column="2"
-                 Stretch="Uniform" MinWidth="10" MinHeight="10"
-                 Fill="{StaticResource CharActivBrush}"
-                 Visibility="{Binding Dot1Visible, Converter={StaticResource BoolToVisibility}}" />
-        <Ellipse Grid.Row="2" Grid.Column="2"
-                 Stretch="Uniform" MinWidth="10" MinHeight="10"
-                 Fill="{StaticResource CharActivBrush}"
-                 Visibility="{Binding Dot2Visible, Converter={StaticResource BoolToVisibility}}" />
-        <Ellipse Grid.Row="2" Grid.Column="0"
-                 Stretch="Uniform" MinWidth="10" MinHeight="10"
-                 Fill="{StaticResource CharActivBrush}"
-                 Visibility="{Binding Dot3Visible, Converter={StaticResource BoolToVisibility}}" />
-        <Ellipse Grid.Row="0" Grid.Column="0"
-                 Stretch="Uniform" MinWidth="10" MinHeight="10"
-                 Fill="{StaticResource CharActivBrush}"
-                 Visibility="{Binding Dot4Visible, Converter={StaticResource BoolToVisibility}}" />
-
-        <!-- Clock characters in the center -->
-        <ItemsControl Grid.Row="1" Grid.Column="1"
-                      ItemsSource="{Binding Path=ClockCharCollection}">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="Grid.Row" Value="{Binding Path=Row}" />
-                    <Setter Property="Grid.Column" Value="{Binding Path=Column}" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                    </Grid>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-    </Grid>
+    <local:ClockView x:Name="ClockView" Margin="10" />
 </Window>

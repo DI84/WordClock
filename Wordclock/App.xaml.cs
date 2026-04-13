@@ -15,10 +15,12 @@ namespace Wordclock
 
             var windowService = new WindowService(mainWindow);
             var clockEngine = new WordClockEngine();
-            var viewModel = new WindowViewModel(windowService, clockEngine);
+            var clock = new ClockViewModel(clockEngine);
+            var viewModel = new WindowViewModel(windowService);
 
             mainWindow.DataContext = viewModel;
-            mainWindow.Closed += (s, args) => viewModel.Dispose();
+            mainWindow.ClockView.DataContext = clock;
+            mainWindow.Closed += (s, args) => clock.Dispose();
             mainWindow.Show();
         }
     }

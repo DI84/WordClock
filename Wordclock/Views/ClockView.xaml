@@ -1,0 +1,93 @@
+<UserControl x:Class="Wordclock.ClockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Wordclock"
+             mc:Ignorable="d"
+             >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+        <DataTemplate DataType="{x:Type local:ShowChar}">
+            <Viewbox >
+                <TextBlock Text="{Binding Text}" 
+                           Style="{StaticResource TextBlockClockActiv}"
+                           Opacity="{Binding Opacity}"
+                           />
+            </Viewbox>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Minute dots in the four corners (clockwise from upper-right) -->
+        <Ellipse Grid.Row="0" Grid.Column="2"
+                 Stretch="Uniform" MinWidth="10" MinHeight="10"
+                 Fill="{StaticResource CharActivBrush}"
+                 Visibility="{Binding Dot1Visible, Converter={StaticResource BoolToVisibility}}" />
+        <Ellipse Grid.Row="2" Grid.Column="2"
+                 Stretch="Uniform" MinWidth="10" MinHeight="10"
+                 Fill="{StaticResource CharActivBrush}"
+                 Visibility="{Binding Dot2Visible, Converter={StaticResource BoolToVisibility}}" />
+        <Ellipse Grid.Row="2" Grid.Column="0"
+                 Stretch="Uniform" MinWidth="10" MinHeight="10"
+                 Fill="{StaticResource CharActivBrush}"
+                 Visibility="{Binding Dot3Visible, Converter={StaticResource BoolToVisibility}}" />
+        <Ellipse Grid.Row="0" Grid.Column="0"
+                 Stretch="Uniform" MinWidth="10" MinHeight="10"
+                 Fill="{StaticResource CharActivBrush}"
+                 Visibility="{Binding Dot4Visible, Converter={StaticResource BoolToVisibility}}" />
+
+        <!-- Clock characters in the center -->
+        <ItemsControl Grid.Row="1" Grid.Column="1"
+                      ItemsSource="{Binding Path=ClockCharCollection}">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Grid.Row" Value="{Binding Path=Row}" />
+                    <Setter Property="Grid.Column" Value="{Binding Path=Column}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>
