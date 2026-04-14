@@ -4,7 +4,7 @@ using System.Windows.Threading;
 
 namespace Wordclock
 {
-    public class ClockViewModel : BaseViewModel, IDisposable
+    public class ClockViewModel : BaseViewModel
     {
         private readonly IWordClockEngine mClockEngine;
         private readonly DispatcherTimer mTimer;
@@ -100,14 +100,6 @@ namespace Wordclock
             Dot2Visible = remainderMinutes >= 2;
             Dot3Visible = remainderMinutes >= 3;
             Dot4Visible = remainderMinutes >= 4;
-        }
-
-        /// <summary>
-        /// Disposes the timer
-        /// </summary>
-        public void Dispose()
-        {
-            mTimer.Stop();
         }
     }
 }
